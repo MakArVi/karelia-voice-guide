@@ -1,46 +1,49 @@
 :root {
-  /* запасные цвета — когда страница открыта не в Telegram */
-  --fb-bg: #ffffff;
-  --fb-text: #15232d;
-  --fb-hint: #75848f;
-  --fb-link: #1f6f8b;
-  --fb-btn: #1f6f8b;
-  --fb-btn-text: #ffffff;
-  --fb-surface: #f1f4f6;
-  --fb-sep: rgba(21, 35, 45, 0.09);
-
-  --bg: var(--tg-theme-bg-color, var(--fb-bg));
-  --text: var(--tg-theme-text-color, var(--fb-text));
-  --hint: var(--tg-theme-hint-color, var(--fb-hint));
-  --link: var(--tg-theme-link-color, var(--fb-link));
-  --accent: var(--tg-theme-button-color, var(--fb-btn));
-  --accent-text: var(--tg-theme-button-text-color, var(--fb-btn-text));
-  --surface: var(--tg-theme-secondary-bg-color, var(--fb-surface));
-  --sep: var(--tg-theme-section-separator-color, var(--fb-sep));
-  --danger: #e5484d;
-  --sun: #f2b544;
+  /* Фирменная палитра «Карельского гида» — одна на бота, мини-приложение, презентацию и ролик.
+     Светлая тема: береста и озёрная вода; тёмная — ночное озеро. Описание — docs/brand.md */
+  --bg: #f7f4ee;          /* береста */
+  --surface: #ece6da;
+  --raised: #fffdf9;
+  --text: #12232e;        /* озёрный тёмный */
+  --hint: #5f6d77;
+  --sep: rgba(18, 35, 46, 0.11);
+  --accent: #a3521f;      /* карельское дерево: кнопки, ссылки */
+  --accent-text: #fffaf3;
+  --accent-soft: rgba(200, 115, 46, 0.14);
+  --link: #a3521f;
+  --lake: #2f6f8f;        /* вода и граница на карте */
+  --danger: #c8393f;
+  --sun: #e9a23b;
   --pine: #2f5d4b;
   --wood: #8a5a3b;
-  --shadow: 0 6px 24px rgba(10, 25, 35, 0.16);
+  --shadow: 0 8px 28px rgba(18, 35, 46, 0.14);
+  --display: "Cormorant Karelia", "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --safe-bottom: max(env(safe-area-inset-bottom, 0px), var(--tg-safe-area-inset-bottom, 0px));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fb-bg: #0f171c;
-    --fb-text: #e6edf1;
-    --fb-hint: #8a99a3;
-    --fb-link: #62c3d8;
-    --fb-btn: #2f8fab;
-    --fb-surface: #19242a;
-    --fb-sep: rgba(255, 255, 255, 0.08);
-  }
-}
-
 html.dark {
+  --bg: #0f1c24;          /* ночное озеро */
+  --surface: #182a35;
+  --raised: #1d3240;
+  --text: #eef2f4;
+  --hint: #93a5b0;
+  --sep: rgba(255, 255, 255, 0.08);
+  --accent: #e09a5f;
+  --accent-text: #12232e;
+  --accent-soft: rgba(224, 154, 95, 0.16);
+  --link: #e9a873;
+  --lake: #6fa3b8;
+  --danger: #ef6b6f;
   --pine: #6aa98a;
   --wood: #c38b63;
-  --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+@font-face {
+  font-family: "Cormorant Karelia";
+  src: url("fonts/cormorant-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
 }
 
 * { box-sizing: border-box; }
@@ -78,8 +81,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .brand-mark { width: 36px; height: 36px; flex: none; }
-.brand-title { font-weight: 700; font-size: 15px; line-height: 1.2; }
-.brand-sub { font-size: 12px; color: var(--hint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html.dark .brand-mark { border-radius: 10px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14); }
+.brand-title { font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.05; letter-spacing: 0.1px; }
+.brand-sub { font-size: 12px; margin-top: 1px; color: var(--hint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .tabs { display: flex; background: var(--surface); border-radius: 12px; padding: 3px; flex: none; }
 .tab {
@@ -92,7 +96,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   border-radius: 9px;
   transition: background 0.15s, color 0.15s;
 }
-.tab.active { background: var(--bg); color: var(--text); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.tab.active { background: var(--raised); color: var(--text); box-shadow: 0 1px 3px rgba(18, 35, 46, 0.12); }
 
 /* ---------- экраны ---------- */
 .screens { position: relative; flex: 1; min-height: 0; }
@@ -111,19 +115,19 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 
 .welcome { text-align: center; margin: auto 0; padding: 4px 0 8px; }
 .welcome-art { width: 100%; max-width: 360px; height: auto; display: block; margin: 0 auto; }
-.welcome h1 { font-size: 22px; line-height: 1.25; margin: 18px 0 6px; }
+.welcome h1 { font-family: var(--display); font-weight: 700; font-size: 32px; line-height: 1.1; margin: 18px 0 8px; letter-spacing: 0.2px; }
 .welcome p { color: var(--hint); margin: 0 auto 18px; max-width: 330px; font-size: 15px; }
 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .chip {
   border: 1px solid var(--sep);
-  background: var(--surface);
+  background: var(--raised);
   color: var(--text);
   border-radius: 999px;
   padding: 8px 13px;
   font-size: 14px;
   transition: transform 0.1s;
 }
-.chip:active { transform: scale(0.97); }
+.chip:active { transform: scale(0.97); background: var(--accent-soft); border-color: transparent; }
 
 /* ---------- сообщения ---------- */
 .msg {
@@ -136,18 +140,22 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 }
 .msg.user { align-self: flex-end; background: var(--accent); color: var(--accent-text); border-bottom-right-radius: 6px; }
 .msg.user.pending { opacity: 0.7; }
-.msg.bot { align-self: flex-start; background: var(--surface); border-bottom-left-radius: 6px; }
+.msg.bot { align-self: flex-start; background: var(--raised); border: 1px solid var(--sep); border-bottom-left-radius: 6px; }
 .msg.error { color: var(--danger); }
 .msg-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   border: 0;
-  background: var(--bg);
+  background: var(--accent-soft);
   color: var(--link);
   border-radius: 999px;
   padding: 6px 11px;
   font-size: 13px;
   font-weight: 600;
 }
+.mini svg, .btn svg { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .msg-sources { margin-top: 8px; font-size: 12px; color: var(--hint); white-space: normal; }
 .msg-sources a { color: var(--hint); }
 
@@ -200,9 +208,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   color: var(--accent-text);
   display: grid;
   place-items: center;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 24px rgba(163, 82, 31, 0.32);
   transition: background 0.2s, transform 0.1s;
 }
+html.dark .mic { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); }
 .mic:active { transform: scale(0.96); }
 .mic svg { width: 32px; height: 32px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
 .mic .stop-icon { display: none; fill: currentColor; stroke: none; }
@@ -233,7 +242,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 html.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(185deg) brightness(0.9) contrast(0.88) saturate(0.6); }
 .leaflet-container { font: inherit; }
 .leaflet-control-attribution { font-size: 10px; }
-.leaflet-bar a { background: var(--bg); color: var(--text); border-bottom-color: var(--sep); }
+.leaflet-bar a { background: var(--raised); color: var(--text); border-bottom-color: var(--sep); }
 
 .pin { background: none; border: 0; }
 .pin-dot {
@@ -267,7 +276,7 @@ html.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(185deg) brightness(0
 .place-chip {
   flex: none;
   border: 0;
-  background: var(--bg);
+  background: var(--raised);
   color: var(--text);
   border-radius: 999px;
   padding: 9px 13px;
@@ -284,7 +293,7 @@ html.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(185deg) brightness(0
   z-index: 600;
   max-height: 72%;
   overflow-y: auto;
-  background: var(--bg);
+  background: var(--raised);
   border-radius: 20px;
   padding: 16px 16px 14px;
   box-shadow: var(--shadow);
@@ -313,11 +322,15 @@ html.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(185deg) brightness(0
   place-items: center;
   font-size: 23px;
 }
-.sheet h2 { font-size: 18px; line-height: 1.25; margin: 0; }
+.sheet h2 { font-family: var(--display); font-weight: 700; font-size: 23px; line-height: 1.1; margin: 0; }
 .sheet-meta { font-size: 13px; color: var(--hint); margin-top: 2px; }
 .sheet p { margin: 12px 0 14px; font-size: 15px; }
 .sheet-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: 0;
   border-radius: 12px;
   padding: 11px 6px;
@@ -341,8 +354,8 @@ html.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(185deg) brightness(0
   z-index: 1000;
   width: max-content;
   max-width: calc(100% - 32px);
-  background: rgba(20, 24, 28, 0.92);
-  color: #fff;
+  background: rgba(18, 35, 46, 0.94);
+  color: #f7f4ee;
   padding: 10px 14px;
   border-radius: 12px;
   font-size: 14px;
