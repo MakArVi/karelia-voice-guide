@@ -1,0 +1,230 @@
+[
+  {
+    "id": "kizhi_island",
+    "label": "kizhi.karelia.ru",
+    "url": "https://kizhi.karelia.ru/vizit-v-muzej/ostrov-kizhi",
+    "gost": "Остров Кижи. – Текст : электронный // Музей-заповедник «Кижи» : официальный сайт. – URL: https://kizhi.karelia.ru/vizit-v-muzej/ostrov-kizhi (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kizhi_church",
+    "label": "kizhi.karelia.ru",
+    "url": "https://kizhi.karelia.ru/collections/arxitekturnyie-pamyatniki/czerkov-preobrazheniya-gospodnya",
+    "gost": "Церковь Преображения Господня. – Текст : электронный // Музей-заповедник «Кижи» : официальный сайт. – URL: https://kizhi.karelia.ru/collections/arxitekturnyie-pamyatniki/czerkov-preobrazheniya-gospodnya (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kizhi_pokrov",
+    "label": "kizhi.karelia.ru",
+    "url": "https://kizhi.karelia.ru/collections/arxitekturnyie-pamyatniki/czerkov-pokrova-presvyatoj-bogorodiczyi",
+    "gost": "Церковь Покрова Пресвятой Богородицы. – Текст : электронный // Музей-заповедник «Кижи» : официальный сайт. – URL: https://kizhi.karelia.ru/collections/arxitekturnyie-pamyatniki/czerkov-pokrova-presvyatoj-bogorodiczyi (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kizhi_price",
+    "label": "kizhi.karelia.ru",
+    "url": "https://kizhi.karelia.ru/vizit-v-muzej/price",
+    "gost": "Прейскурант. – Текст : электронный // Музей-заповедник «Кижи» : официальный сайт. – URL: https://kizhi.karelia.ru/vizit-v-muzej/price (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "unesco_kizhi",
+    "label": "whc.unesco.org",
+    "url": "https://whc.unesco.org/ru/list/544/",
+    "gost": "Кижский погост. – Текст : электронный // Центр всемирного наследия ЮНЕСКО : [сайт]. – URL: https://whc.unesco.org/ru/list/544/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "unesco_petro",
+    "label": "whc.unesco.org",
+    "url": "https://whc.unesco.org/en/list/1654/",
+    "gost": "Petroglyphs of Lake Onega and the White Sea. – Текст : электронный // UNESCO World Heritage Centre : [сайт]. – URL: https://whc.unesco.org/en/list/1654/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ruskeala_site",
+    "label": "ruskeala.ru",
+    "url": "https://ruskeala.ru/",
+    "gost": "Горный парк «Рускеала» : официальный сайт. – URL: https://ruskeala.ru/ (дата обращения: 07.10.2026). – Текст : электронный."
+  },
+  {
+    "id": "ruskeala_about",
+    "label": "ruskeala.ru",
+    "url": "https://ruskeala.ru/about.html",
+    "gost": "О нас. – Текст : электронный // Горный парк «Рускеала» : официальный сайт. – URL: https://ruskeala.ru/about.html (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ruskeala_canyon",
+    "label": "ruskeala.ru",
+    "url": "https://ruskeala.ru/canyon.html",
+    "gost": "Мраморный каньон. – Текст : электронный // Горный парк «Рускеала» : официальный сайт. – URL: https://ruskeala.ru/canyon.html (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ruskeala_history",
+    "label": "ruskeala.ru",
+    "url": "https://ruskeala.ru/history.html",
+    "gost": "О Горном парке Рускеала : ключевые события становления парка. – Текст : электронный // Горный парк «Рускеала» : официальный сайт. – URL: https://ruskeala.ru/history.html (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ruskeala_places",
+    "label": "ruskeala.ru",
+    "url": "https://ruskeala.ru/places.html",
+    "gost": "Как добраться. – Текст : электронный // Горный парк «Рускеала» : официальный сайт. – URL: https://ruskeala.ru/places.html (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ruskeala_tickets",
+    "label": "ruskeala.ru",
+    "url": "https://ruskeala.ru/tickets.html",
+    "gost": "Билеты и цены. – Текст : электронный // Горный парк «Рускеала» : официальный сайт. – URL: https://ruskeala.ru/tickets.html (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "valaam_howto",
+    "label": "valaam.ru",
+    "url": "https://valaam.ru/pilgrimage/kak-doekhat/",
+    "gost": "Как доехать. – Текст : электронный // Валаам : официальный сайт Валаамского монастыря. – URL: https://valaam.ru/pilgrimage/kak-doekhat/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "valaam_pilgrimage",
+    "label": "valaam.ru",
+    "url": "https://valaam.ru/pilgrimage/palomnichestvo/",
+    "gost": "Паломничество. – Текст : электронный // Валаам : официальный сайт Валаамского монастыря. – URL: https://valaam.ru/pilgrimage/palomnichestvo/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "valaam_skity",
+    "label": "valaam.ru",
+    "url": "https://valaam.ru/monastery/skity/",
+    "gost": "Никольский, Всехсвятский, Владимирский, Смоленский и другие скиты. – Текст : электронный // Валаам : официальный сайт Валаамского монастыря. – 2018. – 15 сент. – URL: https://valaam.ru/monastery/skity/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kivach_site",
+    "label": "zapkivach.ru",
+    "url": "https://zapkivach.ru/",
+    "gost": "Государственный заповедник «Кивач» : официальный сайт. – URL: https://zapkivach.ru/ (дата обращения: 07.10.2026). – Текст : электронный."
+  },
+  {
+    "id": "kivach_waterfall",
+    "label": "zapkivach.ru",
+    "url": "https://zapkivach.ru/vodopad-kivach/",
+    "gost": "Водопад Кивач. – Текст : электронный // Государственный заповедник «Кивач» : официальный сайт. – URL: https://zapkivach.ru/vodopad-kivach/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kivach_history",
+    "label": "zapkivach.ru",
+    "url": "https://zapkivach.ru/company/istoriya-sozdaniya/",
+    "gost": "История создания. – Текст : электронный // Государственный заповедник «Кивач» : официальный сайт. – URL: https://zapkivach.ru/company/istoriya-sozdaniya/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kivach_contacts",
+    "label": "zapkivach.ru",
+    "url": "https://zapkivach.ru/contacts/",
+    "gost": "Как добраться. – Текст : электронный // Государственный заповедник «Кивач» : официальный сайт. – URL: https://zapkivach.ru/contacts/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kivach_sights",
+    "label": "zapkivach.ru",
+    "url": "https://zapkivach.ru/turistam/dostoprimichatelnosti/",
+    "gost": "Достопримечательности. – Текст : электронный // Государственный заповедник «Кивач» : официальный сайт. – URL: https://zapkivach.ru/turistam/dostoprimichatelnosti/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "kivach_tourists",
+    "label": "zapkivach.ru",
+    "url": "https://zapkivach.ru/turistam/",
+    "gost": "Туристам. – Текст : электронный // Государственный заповедник «Кивач» : официальный сайт. – URL: https://zapkivach.ru/turistam/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ladoga_about",
+    "label": "parkladoga.ru",
+    "url": "https://parkladoga.ru/company/index.php",
+    "gost": "О парке. – Текст : электронный // Национальный парк «Ладожские шхеры» : официальный сайт. – URL: https://parkladoga.ru/company/index.php (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ladoga_territory",
+    "label": "parkladoga.ru",
+    "url": "https://parkladoga.ru/company/territory/",
+    "gost": "Территория. – Текст : электронный // Национальный парк «Ладожские шхеры» : официальный сайт. – URL: https://parkladoga.ru/company/territory/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ladoga_objects",
+    "label": "parkladoga.ru",
+    "url": "https://parkladoga.ru/tosave/unikalnye-obekty/",
+    "gost": "Уникальные объекты. – Текст : электронный // Национальный парк «Ладожские шхеры» : официальный сайт. – URL: https://parkladoga.ru/tosave/unikalnye-obekty/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "ladoga_pay",
+    "label": "pay.parkladoga.ru",
+    "url": "https://pay.parkladoga.ru/",
+    "gost": "[Плата за посещение национального парка]. – Текст : электронный // Национальный парк «Ладожские шхеры» : официальный сайт. – URL: https://pay.parkladoga.ru/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "paana_about",
+    "label": "paanajarvi-park.com",
+    "url": "https://paanajarvi-park.com/o-parke/",
+    "gost": "О парке. – Текст : электронный // Национальный парк «Паанаярви» : официальный сайт. – URL: https://paanajarvi-park.com/o-parke/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "paana_visit",
+    "label": "paanajarvi-park.com",
+    "url": "https://paanajarvi-park.com/pamyatka-posetitelyu/",
+    "gost": "Памятка посетителю. – Текст : электронный // Национальный парк «Паанаярви» : официальный сайт. – URL: https://paanajarvi-park.com/pamyatka-posetitelyu/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_paana",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/regions/region/sights/sight/?ID=17356",
+    "gost": "National park \"Paanajavi\". – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/regions/region/sights/sight/?ID=17356 (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_general",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/o-karelii/obshchaya-informatsiya-ob-otdykhe-v-karelii/",
+    "gost": "Общая информация об отдыхе в Карелии. – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/o-karelii/obshchaya-informatsiya-ob-otdykhe-v-karelii/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_sights",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/putevoditel/dostoprimechatelnosti-karelii/",
+    "gost": "Достопримечательности Карелии. – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/putevoditel/dostoprimechatelnosti-karelii/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_valaam",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/putevoditel/dostoprimechatelnosti-karelii/istoriko-kulturnye-dostoprimechatelnosti-karelii/spaso-preobrazhenskiy-valaamskiy-monastyr/",
+    "gost": "Спасо-Преображенский Валаамский монастырь. – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/putevoditel/dostoprimechatelnosti-karelii/istoriko-kulturnye-dostoprimechatelnosti-karelii/spaso-preobrazhenskiy-valaamskiy-monastyr/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_ptz",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/regions/region/settlement/?PID=7519&ID=7735",
+    "gost": "Петрозаводск. – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/regions/region/settlement/?PID=7519&ID=7735 (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_marc",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/regions/region/sights/sight/?PID=7508&ID=17102",
+    "gost": "Курорт «Марциальные воды». – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/regions/region/sights/sight/?PID=7508&ID=17102 (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_girvas",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/regions/region/sights/sight/?PID=7508&ID=16958",
+    "gost": "Памятник природы «Гирвасский разрез каньона р. Суна». – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/regions/region/sights/sight/?PID=7508&ID=16958 (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_onega_petro",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/regions/region/sights/sight/?PID=7516&ID=16975",
+    "gost": "Петроглифы на Восточном берегу Онежского озера. – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/regions/region/sights/sight/?PID=7516&ID=16975 (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_white_petro",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/regions/region/sights/sight/?PID=7505&ID=16956",
+    "gost": "Археологический комплекс «Беломорские петроглифы». – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/regions/region/sights/sight/?PID=7505&ID=16956 (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "tic_vottovaara",
+    "label": "ticrk.ru",
+    "url": "https://ticrk.ru/putevoditel/dostoprimechatelnosti-karelii/prirodnye-dostoprimechatelnosti-karelii/gornye-porody-geologicheskie-dostoprimechatelnosti-pamyatniki-prirody/skazochno-misticheskie-istorii-o-gore-vottovaara/",
+    "gost": "Дятлов, В. Сказочно-мистические истории о горе Воттоваара / Василий Дятлов. – Текст : электронный // Карелия. Отдых в Карелии : карельский туристский портал. – URL: https://ticrk.ru/putevoditel/dostoprimechatelnosti-karelii/prirodnye-dostoprimechatelnosti-karelii/gornye-porody-geologicheskie-dostoprimechatelnosti-pamyatniki-prirody/skazochno-misticheskie-istorii-o-gore-vottovaara/ (дата обращения: 07.10.2026)."
+  },
+  {
+    "id": "nmrk",
+    "label": "kareliamuseum.ru",
+    "url": "https://kareliamuseum.ru/",
+    "gost": "Национальный музей Республики Карелия : официальный сайт. – URL: https://kareliamuseum.ru/ (дата обращения: 07.10.2026). – Текст : электронный."
+  }
+]
