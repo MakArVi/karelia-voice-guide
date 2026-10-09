@@ -89,12 +89,13 @@ async def on_start(message: Message) -> None:
     if not _allowed(message):
         await message.answer("Этот путеводитель приватный.")
         return
-    text = ("👋 Привет! Я <b>голосовой гид по Карелии</b>.\n\n"
-            "🎙 Отправьте <b>голосовое сообщение</b> с вопросом — отвечу текстом и голосом. "
-            "Например: «Как добраться до Кижей?» или «Что посмотреть в Рускеале?»\n\n"
-            "⌨️ Можно и текстом. /places — список мест.")
+    text = ("<b>Карельский гид</b> — голосовой путеводитель по Карелии 🌲\n\n"
+            "🎙 <b>Спросите голосом</b> — отвечу текстом и голосом, с источниками.\n"
+            "<i>«Как добраться до Кижей?» · «Что посмотреть в Рускеале?»</i>\n\n"
+            "⌨️ Можно и текстом\n"
+            "📍 /places — 11 мест Карелии")
     if PUBLIC_URL:
-        text += "\n\n🗺 В путеводителе — карта Карелии и кнопка микрофона."
+        text += "\n🗺 «Путеводитель» — карта и кнопка микрофона"
         markup = InlineKeyboardMarkup(inline_keyboard=[_webapp_row()])
     else:
         markup = None
@@ -104,12 +105,13 @@ async def on_start(message: Message) -> None:
 @router.message(Command("help"))
 async def on_help(message: Message) -> None:
     await message.answer(
-        "<b>Как пользоваться</b>\n"
-        "• Запишите голосовое с вопросом о Карелии — я распознаю его и отвечу.\n"
-        "• Можно спрашивать дальше: «а сколько стоит?», «как туда добраться?».\n"
-        "• /places — главные места, у каждого есть точка на карте.\n"
-        "• Кнопка «Путеводитель» внизу открывает мини-приложение с картой.\n\n"
-        f"Режим ответов: {'Claude' if assistant.mode == 'claude' else 'база знаний гида'}."
+        "<b>Как пользоваться гидом</b>\n\n"
+        "🎙 Запишите голосовое с вопросом о Карелии — распознаю и отвечу голосом.\n"
+        "💬 Уточняйте: «а сколько стоит?», «как туда добраться?» — я помню, о каком месте речь.\n"
+        "📍 /places — 11 главных мест, у каждого есть точка на карте.\n"
+        "🗺 Кнопка «Путеводитель» внизу — мини-приложение с картой.\n\n"
+        f"<i>Ответы: {'Claude по базе знаний гида' if assistant.mode == 'claude' else 'база знаний гида'}. "
+        "Цены и расписания — на октябрь 2026, перед поездкой их стоит уточнить.</i>"
     )
 
 
@@ -121,7 +123,8 @@ async def on_places(message: Message) -> None:
     rows = [buttons[i:i + 2] for i in range(0, len(buttons), 2)]
     if PUBLIC_URL:
         rows.append(_webapp_row())
-    await message.answer("Выберите место — расскажу о нём:", reply_markup=InlineKeyboardMarkup(inline_keyboard=rows))
+    await message.answer("<b>Места Карелии</b>\nВыберите — расскажу и покажу на карте:",
+                         reply_markup=InlineKeyboardMarkup(inline_keyboard=rows))
 
 
 @router.callback_query(F.data.startswith("place:"))
@@ -182,11 +185,13 @@ async def _send_answer(bot: Bot, chat_id: int, answer: Answer, question: str | N
     parts = []
     if question:
         parts.append(f"🎙 <i>«{html.escape(question)}»</i>\n")
+    if answer.place:
+        parts.append(f"<b>{answer.place.emoji} {html.escape(answer.place.name)}</b>")
     parts.append(html.escape(answer.text))
     if answer.sources:
-        links = ", ".join(f'<a href="{html.escape(s["url"])}">{html.escape(s["label"])}</a>'
-                          for s in answer.sources[:3])
-        parts.append(f"\n<i>Источники: {links}</i>")
+        links = " · ".join(f'<a href="{html.escape(s["url"])}">{html.escape(s["label"])}</a>'
+                           for s in answer.sources[:3])
+        parts.append(f"\n<blockquote>📚 Источники: {links}</blockquote>")
     rows = []
     if answer.place:
         rows.append([InlineKeyboardButton(text=f"📍 {answer.place.name} на карте",

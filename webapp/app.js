@@ -7,19 +7,29 @@
   const $ = (id) => document.getElementById(id);
   const IDLE = "Нажмите на микрофон и говорите";
   const MAX_SECONDS = 30;
+  const ICON = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5v13l11-6.5z"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
+  };
 
   // ---------- Telegram ----------
   const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
   function applyTheme() {
     const dark = inTelegram ? tg.colorScheme === "dark" : systemDark.matches;
     document.documentElement.classList.toggle("dark", dark);
+    // шапка и фон Telegram — в цвет фирменной палитры
+    const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+    if (tg) {
+      try { tg.setHeaderColor(bg); tg.setBackgroundColor(bg); } catch (e) { /* старый клиент */ }
+      try { if (tg.setBottomBarColor) tg.setBottomBarColor(bg); } catch (e) { /* старый клиент */ }
+    }
   }
   if (!inTelegram && systemDark.addEventListener) systemDark.addEventListener("change", applyTheme);
   if (tg) {
     tg.ready();
     tg.expand();
     try { if (tg.isVersionAtLeast && tg.isVersionAtLeast("7.7")) tg.disableVerticalSwipes(); } catch (e) { /* старый клиент */ }
-    try { tg.setHeaderColor("bg_color"); tg.setBackgroundColor("bg_color"); } catch (e) { /* старый клиент */ }
+    
     tg.onEvent("themeChanged", applyTheme);
     tg.BackButton.onClick(onBack);
   }
@@ -127,14 +137,15 @@
     if (data.audio_url) {
       const listen = document.createElement("button");
       listen.className = "mini";
-      listen.textContent = "▶ Прослушать";
+      listen.innerHTML = `${ICON.play}<span>Прослушать</span>`;
       listen.onclick = () => { unlockAudio(); play(data.audio_url); };
       actions.appendChild(listen);
     }
     if (data.place) {
       const onMap = document.createElement("button");
       onMap.className = "mini";
-      onMap.textContent = `📍 ${data.place.name} на карте`;
+      onMap.innerHTML = `${ICON.pin}<span></span>`;
+      onMap.lastChild.textContent = `${data.place.name} на карте`;
       onMap.onclick = () => { showTab("map"); focusPlace(data.place.id); };
       actions.appendChild(onMap);
     }
@@ -383,13 +394,13 @@
       .addAttribution('© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>')
       .addTo(map);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18 }).addTo(map);
-    const accent = cssColor("--accent");
+    const lake = cssColor("--lake");
     fetch("data/karelia.geojson")
       .then((r) => r.json())
       .then((geo) => {
         const layer = L.geoJSON(geo, {
           interactive: false,
-          style: { color: accent, weight: 2, opacity: 0.9, fillColor: accent, fillOpacity: 0.07 },
+          style: { color: lake, weight: 2, opacity: 0.9, fillColor: lake, fillOpacity: 0.06 },
         }).addTo(map);
         if (!current) map.fitBounds(layer.getBounds(), { padding: [12, 12] });
       })
