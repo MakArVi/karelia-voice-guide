@@ -61,7 +61,12 @@ async def main() -> None:
     started = time.perf_counter()
     mp3 = await tts.synthesize_mp3("Как добраться до Кижей из Петрозаводска?")
     check("Синтез речи", len(mp3) > 5000, f"{len(mp3)} байт за {time.perf_counter() - started:.1f} с")
-    check("Голосовое сообщение OGG/Opus", tts.mp3_to_ogg_opus(mp3)[:4] == b"OggS")
+    check("Голосовое сообщение OGG/Opus", tts.to_ogg_opus(mp3)[:4] == b"OggS")
+    about = kb.answer("Расскажи про Кижи")
+    check("Описание места — живая запись", about.recording is not None and about.recording.exists(),
+          str(about.recording and about.recording.name))
+    if about.recording:
+        check("Запись → голосовое Telegram", (await tts.recording_voice(about.recording))[:4] == b"OggS")
     await stt.load()
     started = time.perf_counter()
     text = await stt.transcribe(mp3)
@@ -83,6 +88,10 @@ async def main() -> None:
     response = client.get(data.get("audio_url") or "/api/tts/none.mp3")
     check("Озвучка ответа (поток MP3)", response.status_code == 200 and len(response.content) > 5000
           and response.headers["content-type"].startswith("audio/mpeg"), f"{len(response.content)} байт")
+    data = client.post("/api/speak", json={"place_id": "kizhi"}, headers=headers).json()
+    response = client.get(data.get("audio_url") or "/api/none")
+    check("Кнопка «Послушать» играет запись", data.get("audio_url") == "/api/recording/kizhi"
+          and response.status_code == 200 and response.headers["content-type"] == "audio/mp4")
     response = client.post("/api/ask", json={"text": "тест"},
                            headers={"X-Telegram-Init-Data": make_init_data(token="1:fake")})
     check("Чужая подпись → 401", response.status_code == 401)

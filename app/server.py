@@ -6,14 +6,14 @@ import secrets
 from collections import OrderedDict
 
 from fastapi import Depends, FastAPI, File, HTTPException, Request, UploadFile
-from fastapi.responses import Response, StreamingResponse
+from fastapi.responses import FileResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import tts
 from .config import WEBAPP_DIR, settings
 from .core import assistant, stt
-from .knowledge import Answer, kb
+from .knowledge import RECORDING_TYPES, Answer, kb, recording_file
 from .telegram_auth import validate_init_data
 
 log = logging.getLogger(__name__)
@@ -57,7 +57,8 @@ async def _payload(question: str, answer: Answer) -> dict:
         "answer": answer.text,
         "place": {"id": place.id, "name": place.name, "lat": place.lat, "lon": place.lon} if place else None,
         "sources": answer.sources[:4],
-        "audio_url": _speech_url(answer.speech),
+        "audio_url": (f"/api/recording/{place.id}" if answer.recording and place
+                      else _speech_url(answer.speech)),
         "mode": answer.mode,
     }
 
@@ -109,6 +110,15 @@ async def speak(body: SpeakIn, user: str = Depends(current_user)) -> dict:
         raise HTTPException(404, "Нет такого места")
     answer = assistant.about_place(user, body.place_id)
     return await _payload(f"Расскажи про {kb.by_id[body.place_id].name}", answer)
+
+
+@app.get("/api/recording/{place_id}")
+async def recording(place_id: str) -> FileResponse:
+    path = recording_file(place_id) if place_id in kb.by_id else None
+    if path is None:
+        raise HTTPException(404, "Для этого места нет записи")
+    return FileResponse(path, media_type=RECORDING_TYPES[path.suffix],
+                        headers={"Cache-Control": "public, max-age=86400"})
 
 
 @app.get("/api/tts/{key}.mp3")

@@ -54,6 +54,7 @@ class Settings:
 settings = Settings()
 
 DATA_DIR = ROOT / "data"
+AUDIO_DIR = DATA_DIR / "audio"  # живые озвучки описаний: <id места>.m4a / .mp3 / .ogg / .wav
 WEBAPP_DIR = ROOT / "webapp"
 MODELS_DIR = ROOT / "models"
 LOGS_DIR = ROOT / "logs"

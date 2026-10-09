@@ -195,6 +195,15 @@ async def _send_answer(bot: Bot, chat_id: int, answer: Answer, question: str | N
         rows.append(_webapp_row())
     await bot.send_message(chat_id, "\n".join(parts),
                            reply_markup=InlineKeyboardMarkup(inline_keyboard=rows) if rows else None)
+    if answer.recording:
+        try:
+            await bot.send_voice(chat_id, BufferedInputFile(await tts.recording_voice(answer.recording), "opisanie.ogg"))
+        except Exception:  # noqa: BLE001 — например, голосовые запрещены: шлём исходный файл
+            log.info("Голосовое с записью не отправилось, шлю аудиофайлом")
+            await bot.send_audio(chat_id, BufferedInputFile(answer.recording.read_bytes(), answer.recording.name),
+                                 title=answer.place.title if answer.place else "Описание",
+                                 performer="Карельский гид")
+        return
     try:
         async with ChatActionSender.record_voice(bot=bot, chat_id=chat_id):
             audio, fmt = await tts.synthesize_voice(answer.speech)

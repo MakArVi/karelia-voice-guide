@@ -6,10 +6,22 @@ import json
 import math
 import re
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import snowballstemmer
 
-from .config import DATA_DIR
+from .config import AUDIO_DIR, DATA_DIR
+
+RECORDING_TYPES = {".m4a": "audio/mp4", ".mp3": "audio/mpeg", ".ogg": "audio/ogg", ".wav": "audio/wav"}
+
+
+def recording_file(place_id: str) -> Path | None:
+    """Живая озвучка описания места, если она есть в data/audio."""
+    for ext in RECORDING_TYPES:
+        path = AUDIO_DIR / f"{place_id}{ext}"
+        if path.exists():
+            return path
+    return None
 
 _stemmer = snowballstemmer.stemmer("russian")
 _WORD = re.compile(r"[a-zа-я0-9]+")
@@ -104,6 +116,7 @@ class Answer:
     places: list[Place] = field(default_factory=list)
     sources: list[dict] = field(default_factory=list)
     mode: str = "offline"
+    recording: Path | None = None  # живая озвучка вместо синтеза речи
 
 
 class KnowledgeBase:
@@ -241,7 +254,7 @@ class KnowledgeBase:
             speech = place.sections["overview"]
             text = speech + "\n\nСпросите ещё: что посмотреть, как добраться, когда ехать или сколько стоит."
             return Answer(text=text, speech=speech, place=place, places=[place],
-                          sources=self.source_refs(place.sources))
+                          sources=self.source_refs(place.sources), recording=recording_file(place.id))
         speech = " ".join(parts)
         return Answer(text=speech, speech=speech, place=place, places=[place],
                       sources=self.source_refs(place.sources))

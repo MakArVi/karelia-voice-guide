@@ -7,6 +7,7 @@ import io
 import logging
 import re
 from collections import OrderedDict
+from pathlib import Path
 
 import edge_tts
 
@@ -73,11 +74,11 @@ async def synthesize_mp3(text: str) -> bytes:
     return bytes(audio)
 
 
-def mp3_to_ogg_opus(mp3: bytes) -> bytes:
-    """Голосовые сообщения Telegram — это OGG с кодеком Opus."""
+def to_ogg_opus(audio: bytes) -> bytes:
+    """Любой звук (mp3, m4a, wav…) → OGG/Opus: так выглядят голосовые сообщения Telegram."""
     import av
 
-    source = av.open(io.BytesIO(mp3), format="mp3")
+    source = av.open(io.BytesIO(audio))
     out_buffer = io.BytesIO()
     target = av.open(out_buffer, mode="w", format="ogg")
     stream = target.add_stream("libopus", rate=48000, layout="mono")
@@ -100,9 +101,11 @@ def mp3_to_ogg_opus(mp3: bytes) -> bytes:
 
     for frame in source.decode(audio=0):
         for resampled in resampler.resample(frame):
+            resampled.pts = None  # у AAC метки времени «плывут» на 1 отсчёт — FIFO их не терпит
             fifo.write(resampled)
         encode_ready()
     for resampled in resampler.resample(None):
+        resampled.pts = None
         fifo.write(resampled)
     encode_ready(flush=True)
     for packet in stream.encode(None):
@@ -116,7 +119,17 @@ async def synthesize_voice(text: str) -> tuple[bytes, str]:
     """Возвращает (аудио, формат): 'ogg' для голосового сообщения или 'mp3', если конвертация не удалась."""
     mp3 = await synthesize_mp3(text)
     try:
-        return await asyncio.to_thread(mp3_to_ogg_opus, mp3), "ogg"
+        return await asyncio.to_thread(to_ogg_opus, mp3), "ogg"
     except Exception:  # noqa: BLE001
         log.exception("Не удалось перекодировать в OGG/Opus, отправлю MP3")
         return mp3, "mp3"
+
+
+_recordings: dict[Path, bytes] = {}
+
+
+async def recording_voice(path: Path) -> bytes:
+    """Живая озвучка места в виде голосового Telegram (перекодируется один раз и запоминается)."""
+    if path not in _recordings:
+        _recordings[path] = await asyncio.to_thread(to_ogg_opus, path.read_bytes())
+    return _recordings[path]

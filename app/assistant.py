@@ -21,7 +21,8 @@ class Assistant:
     async def ask(self, user: str, question: str) -> Answer:
         question = question.strip()[:500]
         result = kb.answer(question, self._last_place.get(user))
-        if self.claude:
+        # «Расскажи про Кижи» — отвечаем записанным описанием с живой озвучкой, без нейросети
+        if self.claude and not result.recording:
             reply = await self.claude.ask(question, list(self._history[user]))
             if reply:
                 text, place_id = reply
